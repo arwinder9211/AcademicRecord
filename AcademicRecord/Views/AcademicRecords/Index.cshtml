@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AcademicRecord.Models.AcademicRecords>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ACLayout.cshtml";
+    int i = 0;
+}
+
+<h2>Academic Records - Total - @Model.Count()</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                   
+                </th>
+                <th>
+                    @Html.ActionLink("Course", "Index", new { sortOrder = "Course" })&nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+
+                </th>
+                <th>
+                    @Html.ActionLink("Student", "Index", new { sortOrder = "Student" })&nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       
+                        <input hidden="hidden" value ="@item.ID" asp-for="@Model.ToArray()[i].ID"/>
+                    </td>
+                    <td>
+
+                        @item.Course.CourseCode - @item.Course.Title
+                    </td>
+                    <td>
+                        @item.Student.StudentID - @item.Student.Name
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input asp-for="@Model.ToArray()[i].Grade" class="form-control" value="@item.Grade"/>
+                               
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+    </form>

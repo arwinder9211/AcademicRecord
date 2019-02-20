@@ -1,0 +1,9 @@
+﻿@using AcademicRecord.Models.MenuModel;
+@{
+    ViewBag.Title = "Academic Record System";
+    List<TopMenuItem> topMenu = new List<TopMenuItem>();
+    topMenu.Add(new TopMenuItem() { AspAction = "Index", AspController = "Employees",DisplayText = "Employees"});
+    topMenu.Add(new TopMenuItem() { AspAction = "Index", AspController = "Courses", DisplayText = "Courses" });
+    topMenu.Add(new TopMenuItem() { AspAction = "Index", AspController = "AcademicRecords", DisplayText = "Student Records" });
+    ViewBag.TopMenu = topMenu;
+}
